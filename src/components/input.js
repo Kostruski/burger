@@ -1,18 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { boundAddText } from "./Actions/actions";
 import { connect } from "react-redux";
 
-import "./App.scss";
 
-function App() {
-    return (
-        <div className="App">
-            <Input />
-        </div>
-    );
-}
-
-export default App;
+const mapStateToProps = state => ({ text: state.text });
 
 const Input = props => {
     // const [inputText, setText] = useState("");
@@ -37,33 +28,5 @@ const Input = props => {
         </>
     );
 };
-
-const mapStateToProps = state => ({ text: state.text });
+console.log(mapStateToProps);
 connect(mapStateToProps, boundAddText)(Input);
-
-const Validation = props => {
-    let validationText = "";
-
-    if (props.length > 4 && props.length <= 9) {
-        validationText = "ok";
-    } else if (props.length > 9) {
-        validationText = "text to long";
-    } else {
-        validationText = "text to short";
-    }
-    return <h1>{validationText}</h1>;
-};
-
-const Char = props => {
-    const style = {
-        padding: "16px",
-        border: "1px solid red",
-        margin: "16px",
-        display: "inline-block",
-    };
-    return (
-        <div onClick={props.clickHandler} style={style}>
-            {props.char}
-        </div>
-    );
-};
