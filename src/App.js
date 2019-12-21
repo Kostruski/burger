@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { boundAddText } from "./Actions/actions";
 import { connect } from "react-redux";
 
@@ -7,31 +7,37 @@ import "./App.scss";
 function App() {
     return (
         <div className="App">
-            <Input />
+            <ConectedInput />
         </div>
     );
 }
 
-export default App;
+const Input = ({ text, boundAddText }) => {
 
-const Input = props => {
-    // const [inputText, setText] = useState("");
+    console.log("state", boundAddText);
 
     const removeChar = index => {
-        const text = props.text.split("");
-        text.splice(index, 1);
-        console.log(text.join(""), index);
-        // setText(text.join(""));
-        boundAddText(text.join(""));
+        const textP = text.split("");
+        textP.splice(index, 1);
+        console.log(textP.join(""), index);
+        boundAddText(textP.join(""));
     };
 
     return (
         <>
-            <input type="text" value={props.text} name="testInput" id="01" onChange={event => boundAddText(event.target.value)} />
-            <h1>{props.text}</h1>
-            <h2>{props.text.length}</h2>
-            <Validation length={props.text.length} />
-            {props.text.split("").map((el, i) => (
+            <input
+                type="text"
+                value={text}
+                name="testInput"
+                id="01"
+                onChange={event => {
+                    boundAddText(event.target.value);
+                }}
+            />
+            <h1>{text}</h1>
+            <h2>{text.length}</h2>
+            <Validation length={text.length} />
+            {text.split("").map((el, i) => (
                 <Char char={el} key={el + i} clickHandler={() => removeChar(i)} />
             ))}
         </>
@@ -39,7 +45,9 @@ const Input = props => {
 };
 
 const mapStateToProps = state => ({ text: state.text });
-connect(mapStateToProps, boundAddText)(Input);
+
+
+const ConectedInput = connect(mapStateToProps, {boundAddText})(Input);
 
 const Validation = props => {
     let validationText = "";
@@ -67,3 +75,5 @@ const Char = props => {
         </div>
     );
 };
+
+export default App;
