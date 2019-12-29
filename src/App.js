@@ -1,8 +1,12 @@
 import React from "react";
+import ToDosContainer from "./containers/toDosContainer";
+
 import "./App.scss";
 
-function App() {
-    return <div className="App"><h1>GRA</h1></div>;
-}
+export const App = () => {
+    return (
+        <ToDosContainer/>
+    );
+};
 
 export default App;
