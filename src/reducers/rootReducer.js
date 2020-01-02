@@ -1,6 +1,6 @@
 const initialState = {
     todos: [],
-    isLoading: true
+    isLoading: false
 };
 
 export const rootReducer = (state = initialState, action) => {

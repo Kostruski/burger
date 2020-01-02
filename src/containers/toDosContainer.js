@@ -5,17 +5,32 @@ import { fetchToDosToState, toggleIsLoadingToState } from "../actions/actions";
 import { connect } from "react-redux";
 
 const ToDosContainer = ({ todos, isLoading, fetchToDosToState, toggleIsLoadingToState }) => {
-
     useEffect(() => {
+        toggleIsLoadingToState();
         fetch("https://jsonplaceholder.typicode.com/todos")
-            .then(response => response.json())
+            .then(response => {
+                if (Object.entries(response) === 0) {
+                    alert("network error");
+                    return [];
+                } else {
+                    return response.json();
+                }
+            })
             .then(json => {
                 fetchToDosToState(json);
                 toggleIsLoadingToState();
-            });
-    }, []);
+                return "zupa";
+            })
+            .then(
+                string => console.log("moja " + string),
+                error => console.log(error, "last then"),
+            )
+            .catch(er => console.log("catch", er));
+    }, [fetchToDosToState, toggleIsLoadingToState]);
 
-    if (isLoading) {
+    if (!todos.length) {
+        return null;
+    } else if (isLoading) {
         return (
             <>
                 <Loader />
