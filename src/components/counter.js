@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 const Counter = () => {
     const [count, setCount] = useState(0);
 
-    useEffect(() => {
-        console.log('just renderre from useEFFECT');
-    }, [count]);
+    console.log('just rendered', count);
 
-    console.log('just rendered');
+    useEffect(() => {
+        console.log('just renderre from useEFFECT', count);
+    }, [count]);
 
     const alertCount = () => {
         setTimeout(() => {

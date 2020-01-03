@@ -4,16 +4,17 @@ import "./App.scss";
 // import AwaitCount from "./components/awaitCount"
 // import AwaitExample from "./components/awaitExample"
 // import FetchAll from "./components/fetchAll"
-import Counter from "./components/counter"
+// import Counter from "./components/counter"
+import CrudTest from './components/crudTest'
 
 function App() {
     return <div className="App">
-        <h1>GRA</h1>
-        {/* <Whiteboard /> */}
+         {/* <Whiteboard /> */}
         {/* <AwaitExample /> */}
         {/* <AwaitCount /> */}
         {/* <FetchAll /> */}
-        <Counter />
+        {/* <Counter /> */}
+        {<CrudTest />}
     </div>;
 }
 

@@ -1,15 +1,6 @@
-const addTodos = todos => ({
-    type: 'ADD_TODOS',
-    payload: todos,
-});
 
-const addUsers = users => ({
-    type: 'ADD_USERS',
-    payload: users,
-});
-
-const addPosts = posts => ({
-    type: 'ADD_POSTS',
+const getPosts = posts => ({
+    type: 'GET_POSTS',
     payload: posts,
 });
 
@@ -18,5 +9,17 @@ const addError = error => ({
     payload: error,
 });
 
-export const addTodosDispatch = todos => dispatch => dispatch(addTodos(todos));
+const addPostTitle = text => ({
+    type: 'ADD_POST_TITLE',
+    payload: text,
+});
+
+const addPostId = id => ({
+    type: 'ADD_POST_ID',
+    payload: id,
+});
+
+export const getPostsDispatch = posts => dispatch => dispatch(getPosts(posts));
 export const addErrorDispatch = error => dispatch => dispatch(addError(error));
+export const addPostTitleDispatch = text => dispatch => dispatch(addPostTitle(text));
+export const addPostIdDispatch = id => dispatch => dispatch(addPostId(id))

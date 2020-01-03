@@ -1,26 +1,8 @@
-const initialState = {
-    posts: [],
-    users: [],
-    todos: [],
-    error: '',
-};
+import {combineReducers} from "redux"
+import posts from './postReducer';
+import inputValues from './inputReducer';
+import error from './errorReducer';
 
-const rootReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'ADD_TODOS':
-            return { ...state, todos: action.payload };
+const rootReducer = combineReducers({posts, inputValues, error})
 
-        case 'ADD_USERS':
-            return { ...state, users: action.payload };
-
-        case 'ADD_POSTS':
-            return { ...state, posts: action.payload };
-
-        case 'ADD_ERROR':
-            return { ...state, error: action.payload }
-        default:
-            return state;
-    }
-};
-
-export default rootReducer
+export default rootReducer;
